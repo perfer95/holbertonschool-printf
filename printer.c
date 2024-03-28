@@ -29,7 +29,7 @@ int _printf(const char *format, ...)
 			}
 			else if (*format == 's')
 			{
-				*s = va_arg(args, char *);
+				s = va_arg(args, char *);
 				while (*s)
 				{
 					write(1, s, 1);
@@ -44,7 +44,7 @@ int _printf(const char *format, ...)
 			}
 			else
 			{
-				write(1, *format, 1);
+				write(1, format, 1);
 				counter++;
 			}
 		}
