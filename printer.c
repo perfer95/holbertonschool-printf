@@ -24,9 +24,11 @@ int _printf(const char *format, ...)
 				print_string(va_arg(args, char *), p_count);
 			else if (format[i + 1] == '%')
 				print_char('%', p_count);
+			else
+				return (-1);
 			i++;
 		}
-		else if (format[i] != '%')
+		else
 		{
 			write(1, &format[i], 1);
 			counter++;
