@@ -25,12 +25,12 @@ int _printf(const char *format, ...)
 			else if (format[i + 1] == '%')
 				print_char('%', p_count);
 			else if (format[i + 1] != '\0')
+			{
 				write(1, "%", 1);
 				continue;
-			else
-			{
-				return (-1);
 			}
+			else
+				return (-1);
 			i++;
 		}
 		else
