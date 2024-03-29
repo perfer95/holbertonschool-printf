@@ -9,8 +9,6 @@ int _printf(const char *format, ...)
 {
 	int i = 0, counter = 0;
 	int *p_count = &counter;
-	char c;
-	char *s;
 	va_list args;
 
 	if (format == NULL)
@@ -49,9 +47,10 @@ int _printf(const char *format, ...)
  */
 void print_char(char c, int *p_count)
 {
+	int i = 0;
 	char *n = "(null)";
 
-	if (s == NULL)
+	if (c == NULL)
 	{
 		for (i = 0; n[i] != '\0'; i++)
 		{
