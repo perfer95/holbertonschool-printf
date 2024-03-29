@@ -26,7 +26,7 @@ int _printf(const char *format, ...)
 				print_char('%', p_count);
 			i++;
 		}
-		else
+		else if (format[i] != '%')
 		{
 			write(1, &format[i], 1);
 			counter++;
