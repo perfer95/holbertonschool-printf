@@ -9,10 +9,11 @@ int _printf(const char *format, ...)
 {
 	int i = 0, counter = 0;
 	int *p_count = &counter;
-	va_list args;
 
 	if (format == NULL)
 		return (0);
+
+	va_list args;
 	va_start(args, format);
 	for (i = 0; format[i] != '\0'; i++)
 	{
