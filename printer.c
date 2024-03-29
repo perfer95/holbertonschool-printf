@@ -9,6 +9,8 @@ int _printf(const char *format, ...)
 {
 	int i = 0, counter = 0;
 	int *p_count = &counter;
+	char c;
+	char *s;
 	va_list args;
 
 	if (format == NULL)
@@ -16,12 +18,17 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 	for (i = 0; format[i] != '\0'; i++)
 	{
-		if (format[i] == '%' && args != NULL)
+		if (format[i] == '%' && format[i + 1] != '\0')
 		{
 			if (format[i + 1] == 'c' || format[i + 1] == '%')
 				print_char(va_arg(args, int), p_count);
 			else if (format[i + 1] == 's')
 				print_string(va_arg(args, char *), p_count);
+			else
+			{
+				write(1, &format[i + 1], 1);
+				counter++;
+			}
 			i++;
 		}
 		else
@@ -42,18 +49,32 @@ int _printf(const char *format, ...)
  */
 void print_char(char c, int *p_count)
 {
-	if (c == '\0')
+	char *n = "(null)";
+
+	if (s == NULL)
 	{
+		for (i = 0; n[i] != '\0'; i++)
+		{
+			write(1, &n[i], 1);
+			*p_count = *p_count + 1;
+		}
 		return;
 	}
 	else if (c == '%')
 	{
+		write(1, "%", 1);
+		write(1, "%", 1);
+		*p_count = *p_count + 1;
+	}
+	else if (c == '\0')
+	{
+		return;
+	}
+	else
+	{
 		write(1, &c, 1);
 		*p_count = *p_count + 1;
 	}
-
-	write(1, &c, 1);
-	*p_count = *p_count + 1;
 }
 
 /**
