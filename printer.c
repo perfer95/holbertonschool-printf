@@ -17,21 +17,20 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (format[++i] == 'c')
+			if (format[i + 1] == 'c')
 			{
 				print_char(va_arg(args, int));
-				counter++;
 			}
-			else if (format[++i] == 's')
+			else if (format[i + 1] == 's')
 			{
 				print_string(va_arg(args, char *));
-				counter++;
 			}
-			else if (format[++i] == '%')
+			else if (format[i + 1] == '%')
 			{
 				write(1, "%", 1); /*just print '%'*/
-				counter++;
 			}
+			counter++;
+			i++;
 		}
 		else if (format[i] == '\\' && format[i + 1] == 'n')
 		{
