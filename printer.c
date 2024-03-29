@@ -50,7 +50,7 @@ void print_char(char c, int *p_count)
 	int i = 0;
 	char *n = "(null)";
 
-	if (c == NULL)
+	if (c == 0)
 	{
 		for (i = 0; n[i] != '\0'; i++)
 		{
