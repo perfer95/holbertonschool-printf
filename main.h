@@ -6,8 +6,8 @@
 #include <stdarg.h>
 
 /*Auxiliar prototypes*/
-void print_char(char c);
-void print_string(char *s);
+void print_string(char *s, int *p_count);
+void print_char(char c, int *p_count);
 
 /*Prototypes Functions*/
 int _printf(const char *format, ...);
