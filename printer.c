@@ -7,49 +7,70 @@
  */
 int _printf(const char *format, ...)
 {
-	int counter = 0;
-	char c;
-	char *s;
+	int i = 0, counter = 0;
 	va_list args;
 
 	if (format == NULL)
 		return (0);
-
 	va_start(args, format);
-	while (*format)
+	for (i = 0; format[i] != '\0'; i++)
 	{
-		if (*format == '%')
+		if (format[i] == '%')
 		{
-			format++;
-			if (*format == 'c')
+			if (format[++i] == 'c')
 			{
-				c = va_arg(args, int);
-				write(1, &c, 1);
+				print_char(va_arg(args, int));
 				counter++;
 			}
-			else if (*format == 's')
+			else if (format[++i] == 's')
 			{
-				s = va_arg(args, char *);
-				while (*s)
-				{
-					write(1, s, 1);
-					s++;
-					counter++;
-				}
-			}
-			else if (*format == '%')
-			{
-				write(1, "%", 1);
+				print_string(va_arg(args, char *));
 				counter++;
 			}
-			else
+			else if (format[++i] == '%')
 			{
-				write(1, format, 1);
+				write(1, "%", 1); /*just print '%'*/
 				counter++;
 			}
+		}
+		else if (format[i] == '\\')
+		{
+			write(1, "\n", 1);
+			counter++;
+		}
+		else
+		{
+			write(1, &format[i], 1);
+			counter++;
 		}
 		format++;
 	}
 	va_end(args);
 	return (counter);
+}
+
+
+
+/**
+ * print_char - function that prints chars
+ * @c: char to print
+ * Return: void
+ */
+void print_char(char c)
+{
+	write(1, &c, 1);
+}
+
+/**
+ * print_string - function that prints strings
+ * @s: string to print
+ * Return: void
+ */
+void print_string(char *s)
+{
+	while (*s)
+	{
+		write(1, s, 1);
+		s++;
+	}
 }
