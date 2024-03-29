@@ -19,9 +19,9 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			if (format[i + 1] == 'c' || format[i + 1] == '%')
-				print_char(va_arg(args, int), p_counter);
+				print_char(va_arg(args, int), p_count);
 			else if (format[i + 1] == 's')
-				print_string(va_arg(args, char *), p_counter);
+				print_string(va_arg(args, char *), p_count);
 			i++;
 		}
 		else
