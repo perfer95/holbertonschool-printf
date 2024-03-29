@@ -57,7 +57,7 @@ void print_char(char c, int *p_count)
 void print_string(char *s, int *p_count)
 {
 	int i = 0;
-	char *n = "(nill)";
+	char *n = "(null)";
 
 	if (s == NULL)
 	{
