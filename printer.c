@@ -8,6 +8,7 @@
 int _printf(const char *format, ...)
 {
 	int i = 0, counter = 0;
+	int *p_count = &counter;
 	va_list args;
 
 	if (format == NULL)
@@ -17,20 +18,11 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == 'c')
-				print_char(va_arg(args, int));
+			if (format[i + 1] == 'c' || format[i + 1] == '%')
+				print_char(va_arg(args, int), p_counter);
 			else if (format[i + 1] == 's')
-				print_string(va_arg(args, char *));
-			else if (format[i + 1] == '%')
-				write(1, "%", 1); /*just print '%'*/
-			counter++;
+				print_string(va_arg(args, char *), p_counter);
 			i++;
-		}
-		else if (format[i] == '\\' && format[i + 1] == 'n')
-		{
-			write(1, "\n", 1);
-			i++;
-			counter++;
 		}
 		else
 		{
@@ -45,39 +37,28 @@ int _printf(const char *format, ...)
 /**
  * print_char - function that prints chars
  * @c: char to print
+ * @p_count: int pointer to count each print char
  * Return: void
  */
-void print_char(char c)
+void print_char(char c, int *p_count)
 {
 	write(1, &c, 1);
+	*p_count++;
 }
 
 /**
  * print_string - function that prints strings
  * @s: string to print
+ * @p_count: int pointer to count each print char
  * Return: void
  */
-void print_string(char *s)
+void print_string(char *s, int *p_count)
 {
 	int i = 0;
 
 	for (i = 0; s[i] != '\0'; i++)
 	{
-		if (s[i] == '\\')
-		{
-			if (s[i + 1] == 'n')
-			{
-				write(1, "\n", 1);
-				i++;
-			}
-			else
-			{
-				write(1, &s[i], 1);
-			}
-		}
-		else
-		{
-			write(1, &s[i], 1);
-		}
+		write(1, &s[i], 1);
+		*p_count++;
 	}
 }
