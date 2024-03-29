@@ -52,7 +52,6 @@ void print_char(char c, int *p_count)
 	if (c == '%')
 	{
 		write(1, "%", 1);
-		write(1, "%", 1);
 		*p_count = *p_count + 1;
 	}
 	else if (c == '\0')
