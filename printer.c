@@ -56,6 +56,7 @@ void print_char(char c, int *p_count)
 	}
 	else if (c == '\0')
 	{
+		write(1, &c, 1);
 		return;
 	}
 	else
