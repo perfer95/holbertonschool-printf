@@ -59,8 +59,10 @@ void print_string(char *s, int *p_count)
 	int i = 0;
 
 	if (s == NULL)
+	{
 		write(1, s, 1);
 		return;
+	}
 	for (i = 0; s[i] != '\0'; i++)
 	{
 		write(1, &s[i], 1);
