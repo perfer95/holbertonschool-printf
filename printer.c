@@ -60,7 +60,7 @@ void print_string(char *s, int *p_count)
 
 	if (s == NULL)
 	{
-		write(1, s, 1);
+		write(1, &s[i], 1);
 		return;
 	}
 	for (i = 0; s[i] != '\0'; i++)
