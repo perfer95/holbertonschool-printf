@@ -43,7 +43,15 @@ int _printf(const char *format, ...)
 void print_char(char c, int *p_count)
 {
 	if (c == '\0')
+	{
 		return;
+	}
+	else if (c == '%')
+	{
+		write(1, &c, 1);
+		*p_count = *p_count + 1;
+	}
+
 	write(1, &c, 1);
 	*p_count = *p_count + 1;
 }
