@@ -66,9 +66,25 @@ void print_char(char c)
  */
 void print_string(char *s)
 {
-	while (*s)
+	int i = 0;
+
+	for (i = 0; s[i] != '0'; i++)
 	{
-		write(1, s, 1);
-		s++;
+		if (s[i] == '\\')
+		{
+			if (s[i + 1] == 'n')
+			{
+				write(1, "\n", 1);
+				i++;
+			}
+			else
+			{
+				write(1, &s[i], 1);
+			}
+		}
+		else
+		{
+			write(1, &s[i], 1);
+		}
 	}
 }
