@@ -43,7 +43,7 @@ int _printf(const char *format, ...)
 void print_char(char c, int *p_count)
 {
 	write(1, &c, 1);
-	*p_count++;
+	*p_count = *p_count + 1;
 }
 
 /**
@@ -59,6 +59,6 @@ void print_string(char *s, int *p_count)
 	for (i = 0; s[i] != '\0'; i++)
 	{
 		write(1, &s[i], 1);
-		*p_count++;
+		*p_count = *p_count + 1;
 	}
 }
