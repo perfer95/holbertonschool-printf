@@ -33,9 +33,10 @@ int _printf(const char *format, ...)
 				counter++;
 			}
 		}
-		else if (format[i] == '\\')
+		else if (format[i] == '\\' && format[i + 1] == 'n')
 		{
 			write(1, "\n", 1);
+			i++;
 			counter++;
 		}
 		else
@@ -47,8 +48,6 @@ int _printf(const char *format, ...)
 	va_end(args);
 	return (counter);
 }
-
-
 
 /**
  * print_char - function that prints chars
