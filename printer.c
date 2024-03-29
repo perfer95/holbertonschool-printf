@@ -57,10 +57,15 @@ void print_char(char c, int *p_count)
 void print_string(char *s, int *p_count)
 {
 	int i = 0;
+	char *n = "(nill)"
 
 	if (s == NULL)
 	{
-		write(1, &s[i], 1);
+		for (i = 0; n[i] != '\0'; i++)
+		{
+			write(1, &n[i], 1);
+			*p_count = *p_count + 1;
+		}
 		return;
 	}
 	for (i = 0; s[i] != '\0'; i++)
