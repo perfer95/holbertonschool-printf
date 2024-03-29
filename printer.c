@@ -24,8 +24,8 @@ int _printf(const char *format, ...)
 				print_string(va_arg(args, char *), p_count);
 			else if (format[i + 1] == '%')
 				print_char('%', p_count);
-			else if (format[i] != '\0')
-				return(0);
+			else if (format [i + 1] != '\0')
+				return (0);
 			else
 				return (-1);
 			i++;
