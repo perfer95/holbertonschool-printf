@@ -11,7 +11,7 @@ int _printf(const char *format, ...)
 	int *p_count = &counter;
 	va_list args;
 
-	if (*format == NULL)
+	if (format == NULL)
 		return (0);
 	va_start(args, format);
 	for (i = 0; format[i] != '\0'; i++)
