@@ -27,6 +27,7 @@ int _printf(const char *format, ...)
 			else if (format[i + 1] != '\0')
 			{
 				write(1, "%", 1);
+				counter++;
 				continue;
 			}
 			else
