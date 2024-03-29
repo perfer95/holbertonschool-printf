@@ -18,17 +18,11 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			if (format[i + 1] == 'c')
-			{
 				print_char(va_arg(args, int));
-			}
 			else if (format[i + 1] == 's')
-			{
 				print_string(va_arg(args, char *));
-			}
 			else if (format[i + 1] == '%')
-			{
 				write(1, "%", 1); /*just print '%'*/
-			}
 			counter++;
 			i++;
 		}
