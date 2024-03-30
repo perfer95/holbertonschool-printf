@@ -114,7 +114,6 @@ void print_integer(int n, int *p_count)
 	if (n > 0)
 	{
 		nums = malloc((numd + 1) * sizeof(char)); /*numbers and '\0'*/
-		printf("bits: %i\n", (numd + 2));
 		for (i = 0; i < numd; i++)
 		{
 			nums[i] = (n % 10) + '0';
