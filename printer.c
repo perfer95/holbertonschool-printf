@@ -107,44 +107,43 @@ void print_string(char *s, int *p_count)
  */
 void print_integer(int n, int *p_count)
 {
-	int i;
-	char *nums;
-	int numd = num_digits(n);
+	char nums[20];
+	int i = 0;
+	int negative = 0;
 
+	if (n == 0)
+	{
+		write(1, "0", 1);
+		*p_count = *p_count + 1;
+		return;
+	}
 	if (n == INT_MIN)
 	{
 		write(1, "-2147483648", 11);
 		*p_count += 11;
 		return;
 	}
-	if (n >= 0)
+	if (n < 0)
 	{
-		numd = numd + 1; /*numbers and '\0'*/
-		nums = malloc(numd * sizeof(char));
-		nums[numd - 1] = '\0';
-		for (i = (numd - 2); i >= 0; i--)
-		{
-			nums[i] = (n % 10) + '0';
-			n /= 10;
-		}
+		negative = 1;
+		n = -n;
 	}
-	else
+	while (n != 0)
 	{
-		numd = numd + 2;/*negative symbol, numbers and '\0'*/
-		n = n * -1;
-		nums = malloc(numd * sizeof(char));
-		nums[numd - 1] = '\0';
-		nums[0] = '-';
-		for (i = (numd - 2); i >= 1; i--)
-		{
-			nums[i] = (n % 10) + '0';
-			n /= 10;
-		}
+		nums[i++] = (n % 10) + '0';
+		n /= 10;
 	}
-	for (i = 0; nums[i] != '\0'; i++)
+	if (negative)
+	{
+		nums[i++] = '-';
+	}
+
+	i--;
+
+	while (i >= 0)
 	{
 		write(1, &nums[i], 1);
 		*p_count = *p_count + 1;
+		i--;
 	}
-	free(nums);
 }
