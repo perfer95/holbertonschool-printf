@@ -134,7 +134,6 @@ void print_integer(int n, int *p_count)
 			nums[i] = (n % 10) + '0';
 			n /= 10;
 		}
-		nums[i] = '\0';
 	}
 	for (i = 0; nums[i] != '\0'; i++)
 	{
