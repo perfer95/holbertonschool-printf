@@ -111,6 +111,12 @@ void print_integer(int n, int *p_count)
 	char *nums;
 	int numd = num_digits(n);
 
+	if (n == INT_MIN)
+	{
+		write(1, "-2147483648", 11);
+		*p_count += 11;
+		return;
+	}
 	if (n >= 0)
 	{
 		numd = numd + 1; /*numbers and '\0'*/
