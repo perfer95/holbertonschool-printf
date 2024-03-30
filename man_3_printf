@@ -1,0 +1,63 @@
+PRINTF(3)
+
+NAME
+       _printf - print formatted output
+
+SYNOPSIS
+       #include "main.h"
+
+       int _printf(const char *format, ...);
+       void print_char(char c, int *p_count);
+       void print_string(char *s, int *p_count);
+       void print_integer(int n, int *p_count);
+
+DESCRIPTION
+       The _printf() function writes output to stdout, according to the format string format. It processes the format string and calls the appropriate function to print each component based on the format specifier.
+
+       The print_char() function prints a single character to stdout. It takes the character to be printed as input along with a pointer to an integer to count the number of characters printed.
+
+       The print_string() function prints a string of characters to stdout. It takes the string to be printed as input along with a pointer to an integer to count the number of characters printed.
+
+       The print_integer() function prints an integer to stdout. It takes the integer to be printed as input along with a pointer to an integer to count the number of characters printed.
+
+RETURN VALUE
+       Upon successful return, _printf() returns the number of characters printed (excluding the null byte used to end output to strings). The print_char(), print_string(), and print_integer() functions do not return a value.
+
+FORMAT SPECIFIERS
+       The format string passed to _printf() can include the following format specifiers:
+
+       %c     Print a single character.
+
+       %s     Print a string of characters.
+
+       %d, %i Print an integer in base 10.
+
+       %%     Print a literal % character.
+
+EXAMPLES
+       _printf("Hello, %s!\n", "world");
+           Prints: Hello, world!
+
+       _printf("The number is %d\n", 42);
+           Prints: The number is 42
+
+       _printf("Printing a percent sign: %%\n");
+           Prints: Printing a percent sign: %
+
+	_printf("The integer is: %i\n", 1024);
+           Prints: The integer is: 1024
+
+RETURN VALUE
+       Upon successful return, _printf() returns the number of characters printed (excluding the null byte used to end output to strings). The functions print_char(), print_string(), and print_integer() do not return a value.
+
+NOTES
+       The _printf() function only covers certain functionalities of the printf function, therefore, not all the qualities that were originally implemented are expected
+
+SEE ALSO
+       printf(3)
+
+BUGS
+       None known.
+
+AUTHOR
+       Created by Fernando Pérez and Iván Pé
