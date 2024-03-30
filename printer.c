@@ -111,7 +111,7 @@ void print_integer(int n, int *p_count)
 	char *nums;
 	int numd = num_digits(n);
 
-	if (n > 0)
+	if (n >= 0)
 	{
 		numd = numd + 1; /*numbers and '\0'*/
 		nums = malloc(numd * sizeof(char));
