@@ -126,7 +126,7 @@ void print_integer(int n, int *p_count)
 	{
 		numd = numd + 2;/*negative symbol, numbers and '\0'*/
 		n = n * -1;
-		nums = malloc((numd + 2) * sizeof(char));
+		nums = malloc(numd * sizeof(char));
 		nums[numd - 1] = '\0';
 		nums[0] = '-';
 		for (i = (numd - 2); i >= 1; i--)
