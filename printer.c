@@ -22,6 +22,8 @@ int _printf(const char *format, ...)
 				print_char(va_arg(args, int), p_count);
 			else if (format[i + 1] == 's')
 				print_string(va_arg(args, char *), p_count);
+			else if (format[i + 1] == 'd' || format[i + 1] == 'i')
+				print_integer(va_arg(args, int), p_count);
 			else if (format[i + 1] == '%')
 				print_char('%', p_count);
 			else if (format[i + 1] != '\0')
@@ -95,4 +97,47 @@ void print_string(char *s, int *p_count)
 		write(1, &s[i], 1);
 		*p_count = *p_count + 1;
 	}
+}
+
+/**
+ * print_integer - function that prints integers
+ * @n: integer to print
+ * @p_count: int pointer to count each print char
+ * Return: void
+ */
+void print_integer(int n, int *p_count)
+{
+	int i;
+	char *nums;
+	int numd = num_digits(n);
+
+	if (n > 0)
+	{
+		nums = malloc((numd + 1) * sizeof(char)); /*numbers and '\0'*/
+		printf("bits: %i\n", (numd + 2));
+		for (i = 0; i < numd; i++)
+		{
+			nums[i] = (n % 10) + '0';
+			n /= 10;
+		}
+		nums[i] = '\0';
+	}
+	else
+	{
+		n = n * -1;
+		nums = malloc((numd + 2) * sizeof(char)); /*neg,numbers,'\0'*/
+		nums[0] = '-';
+		for (i = 1; i <= numd; i++)
+		{
+			nums[i] = (n % 10) + '0';
+			n /= 10;
+		}
+		nums[i] = '\0';
+	}
+	for (i = 0; nums[i] != '\0'; i++)
+	{
+		write(1, &nums[i], 1);
+		*p_count = *p_count + 1;
+	}
+	free(nums);
 }
