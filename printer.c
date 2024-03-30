@@ -113,20 +113,23 @@ void print_integer(int n, int *p_count)
 
 	if (n > 0)
 	{
-		nums = malloc((numd + 1) * sizeof(char)); /*numbers and '\0'*/
-		for (i = 0; i < numd; i++)
+		numd = numd + 1; /*numbers and '\0'*/
+		nums = malloc(numd * sizeof(char));
+		nums[numd - 1] = '\0';
+		for (i = (numd - 2); i >= 0; i--)
 		{
 			nums[i] = (n % 10) + '0';
 			n /= 10;
 		}
-		nums[i] = '\0';
 	}
 	else
 	{
+		numd = numd + 2;/*negative symbol, numbers and '\0'*/
 		n = n * -1;
-		nums = malloc((numd + 2) * sizeof(char)); /*neg,numbers,'\0'*/
+		nums = malloc((numd + 2) * sizeof(char));
+		nums[numd - 1] = '\0';
 		nums[0] = '-';
-		for (i = 1; i <= numd; i++)
+		for (i = (numd - 2); i >= 1; i--)
 		{
 			nums[i] = (n % 10) + '0';
 			n /= 10;
